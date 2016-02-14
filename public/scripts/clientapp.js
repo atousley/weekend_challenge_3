@@ -12,30 +12,28 @@ function calculateAdd() {
     $.each($('#calcInput').serializeArray(), function(i, field) {
         values.type = 'add';
         values[field.name] = field.value;
-
     });
+
     console.log(values);
 
     $('#calcInput').find('input[type=text]').val('');
 
     $.ajax({
         type: 'POST',
-        url: '/add',
+        url: '/math',
         data: values,
         success: function(data) {
+            $.ajax({
+                type: 'GET',
+                url: '/add',
+                success: function (data) {
+                    console.log('From Server: ', data);
+                    $('.output').append('<div>' + data + '</div>');
+                }
+            });
             //console.log(data);
             //$('.output').children().remove();
             //$('.output').append('<div>' + data + '</div>');
-        }
-    });
-
-    $.ajax({
-        type: 'GET',
-        url: '/add',
-
-        success: function(data) {
-            $('.output').children().remove();
-            $('.output').append('<div>' + data + '</div>');
         }
     });
 }
@@ -55,7 +53,7 @@ function calculateSub() {
 
     $.ajax({
         type: 'POST',
-        url: '/sub',
+        url: '/math',
         data: values,
         success: function(data) {
 
@@ -78,7 +76,7 @@ function calculateMult() {
 
     $.ajax({
         type: 'POST',
-        url: '/mult',
+        url: '/math',
         data: values,
         success: function(data) {
 
@@ -101,7 +99,7 @@ function calculateDiv() {
 
     $.ajax({
         type: 'POST',
-        url: '/divide',
+        url: '/math',
         data: values,
         success: function(data) {
 

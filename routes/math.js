@@ -5,11 +5,9 @@ var values = [];
 
 router.post('/', function(req, res) {
     values.push(req.body);
-    //console.log(req.body);
     res.send(values);
-    console.log(values);
+    //console.log(values);
 });
 
-
-
-module.exports = router;
+exports.router = router;
+exports.values = values;
