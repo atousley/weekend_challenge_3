@@ -5,10 +5,10 @@ var values = [];
 var answer = 0;
 
 router.post('/', function(req, res) {
+    values = [];
     values.push(req.body);
     addVals();
     res.send(answer);
-    console.log(answer);
 });
 
 function addVals() {
@@ -18,5 +18,5 @@ function addVals() {
     answer = answer.toString();
 }
 
-exports.router = router;
-exports.answer = answer;
+module.exports = router;
+

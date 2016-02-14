@@ -1,8 +1,10 @@
 $(document).ready(function() {
+    clearDom();
     $('#calcInput').on('click', '#add', calculateAdd);
     $('#calcInput').on('click', '#sub', calculateSub);
     $('#calcInput').on('click', '#mult', calculateMult);
     $('#calcInput').on('click', '#div', calculateDiv);
+    $('.clear').on('click', clearDom);
 });
 
 function calculateAdd() {
@@ -22,10 +24,7 @@ function calculateAdd() {
         url: '/add',
         data: values,
         success: function(data) {
-
-            console.log('From Server: ', data);
             $('.output').append('<div>' + data + '</div>');
-            //$('.output').children().remove();
         }
     });
 }
@@ -45,10 +44,10 @@ function calculateSub() {
 
     $.ajax({
         type: 'POST',
-        url: '/math',
+        url: '/sub',
         data: values,
         success: function(data) {
-
+            $('.output').append('<div>' + data + '</div>');
         }
     });
 }
@@ -68,10 +67,10 @@ function calculateMult() {
 
     $.ajax({
         type: 'POST',
-        url: '/math',
+        url: '/mult',
         data: values,
         success: function(data) {
-
+            $('.output').append('<div>' + data + '</div>');
         }
     });
 }
@@ -91,10 +90,14 @@ function calculateDiv() {
 
     $.ajax({
         type: 'POST',
-        url: '/math',
+        url: '/divide',
         data: values,
         success: function(data) {
-
+            $('.output').append('<div>' + data + '</div>');
         }
     });
+}
+
+function clearDom() {
+    $('.output').children().remove();
 }
