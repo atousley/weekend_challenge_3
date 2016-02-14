@@ -13,27 +13,19 @@ function calculateAdd() {
         values.type = 'add';
         values[field.name] = field.value;
     });
-
     console.log(values);
 
     $('#calcInput').find('input[type=text]').val('');
 
     $.ajax({
         type: 'POST',
-        url: '/math',
+        url: '/add',
         data: values,
         success: function(data) {
-            $.ajax({
-                type: 'GET',
-                url: '/add',
-                success: function (data) {
-                    console.log('From Server: ', data);
-                    $('.output').append('<div>' + data + '</div>');
-                }
-            });
-            //console.log(data);
+
+            console.log('From Server: ', data);
+            $('.output').append('<div>' + data + '</div>');
             //$('.output').children().remove();
-            //$('.output').append('<div>' + data + '</div>');
         }
     });
 }

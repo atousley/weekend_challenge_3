@@ -12,8 +12,8 @@ var divide = require('./routes/divide');
 app.use(bodyParser.urlencoded({extended: true}));
 app.set('port', process.env.PORT || 5000);
 
-app.use('/math', math.router);
-app.use('/add', add);
+//app.use('/math', math.router);
+app.use('/add', add.router);
 app.use('/sub', sub);
 app.use('/mult', mult);
 app.use('/divide', divide);
